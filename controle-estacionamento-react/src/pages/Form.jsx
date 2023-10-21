@@ -27,7 +27,22 @@ function Form() {
 
         // Recupera os veículos já cadastrados no LocalStorage
         const veiculosCadastrados = JSON.parse(localStorage.getItem('veiculos')) || [];
-
+        console.log(veiculosCadastrados);
+        
+        // Verifica se a vaga não está ocupada
+        const vagaIndisponivel = veiculosCadastrados.find(estacionamento => estacionamento.vaga === veiculo.vaga)
+        if(!vagaIndisponivel) {
+            // Verifica se veiculo com a mesma placa já foi cadastrado
+            const placaUsada = veiculosCadastrados.find(estacionamento => estacionamento.placa === veiculo.placa);
+            if(placaUsada) {
+                alert('Placa já cadastrada.')
+                return;
+            }
+        } else {
+            alert('Vaga já ocupada.')
+            return;
+        }
+        
         // Adiciona o novo veículo no estacionamento
         veiculosCadastrados.push(veiculo);
 

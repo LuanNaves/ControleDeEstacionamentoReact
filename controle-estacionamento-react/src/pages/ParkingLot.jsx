@@ -9,8 +9,10 @@ const Vagas = () => {
         navigate('/');
     };
 
+    const veiculos = JSON.parse(localStorage.getItem('veiculos')) || [];
+
     return (
-        <div class="app">
+        <div className="app">
             <h1>Vagas Disponíveis</h1>
             <table class="table table-disponivel">
                 <thead>
